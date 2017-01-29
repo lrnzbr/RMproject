@@ -1,13 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import ctypes
 from ctypes import *
+import sys
+import logging
 app = Flask(__name__)
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
 app.secret_key = 'MY_SUPER_SECRET_KEY'
 from database_setup import *
-import sys
-import logging
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
