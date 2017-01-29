@@ -19,6 +19,7 @@ class User(Base):
 	hometown = Column(String)
 	proffesion = Column(String)
 	about_me = Column(String)
+	profile_pic = Column(String)
 	course = relationship("Course", uselist=True)
 
 class Course(Base):

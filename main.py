@@ -2,8 +2,12 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import ctypes
 from ctypes import *
 app = Flask(__name__)
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 app.secret_key = 'MY_SUPER_SECRET_KEY'
 from database_setup import *
+import sys
+import logging
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -21,18 +25,19 @@ def sign_up():
 	if (request.method == 'GET'):
 		return render_template('sign_up.html')
 	else:
-		first_name= request.form['first_name']
-		last_name= request.form['last_name']
-		username= request.form['username']
-		password= request.form['password']
+		first_name = request.form['first_name']
+		last_name = request.form['last_name']
+		username = request.form['username']
+		password = request.form['password']
 		day_of_birth = request.form['day_of_birth']
 		month_of_birth = request.form['month_of_birth']
 		year_of_birth = request.form['year_of_birth']
-		gender= request.form['gender']
-		hometown= request.form['hometown']
+		gender = request.form['gender']
+		hometown = request.form['hometown']
 		proffesion = request.form['proffesion']
 		about_me = request.form['about_me']
-		user= User(first_name=first_name, last_name=last_name, username=username, day_of_birth = day_of_birth, month_of_birth = month_of_birth, year_of_birth = year_of_birth, gender = gender, hometown=hometown, proffesion = proffesion, about_me = about_me, password=password)
+		profile_pic = request.form['profile_pic']
+		user = User(first_name=first_name, last_name=last_name, username=username, day_of_birth = day_of_birth, month_of_birth = month_of_birth, year_of_birth = year_of_birth, gender = gender, hometown=hometown, proffesion = proffesion, about_me = about_me, profile_pic = profile_pic, password=password)
 		dbsession.add(user)
 		dbsession.commit()
 		return redirect(url_for('sign_in'))
