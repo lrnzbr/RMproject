@@ -10,7 +10,9 @@
 <meta http-equiv="refresh" content="1.5;/" />
 </center>
 {%else%}
-<h1><center><b><u><i>{{ user.first_name }}'s Profile</i></u></b></center></h1>
+<center>
+<img src={{profile_pic_path}} height="300"></img>
+<h1><b><u><i>{{ user.first_name }}'s Profile</i></u></b></center></h1>
 {%endif%}
 </body>
 </html>

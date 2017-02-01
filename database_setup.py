@@ -10,17 +10,21 @@ class User(Base):
 	id = Column(Integer, primary_key=True) 
 	first_name = Column(String)
 	last_name = Column(String)  
-	username = Column(String)
+	username = Column(String, unique=True)
 	password = Column(String)
 	day_of_birth = Column(Integer) #multiple choice
 	month_of_birth = Column(Integer) #multiple choice
 	year_of_birth = Column(Integer) #multiple choice
 	gender = Column(String)  #multiple choice
 	hometown = Column(String)
-	proffesion = Column(String)
+	profession = Column(String)
 	about_me = Column(String)
-	profile_pic = Column(String)
+	profile_pic = Column(String, unique=True)
 	course = relationship("Course", uselist=True)
+
+	
+	def set_photo(self, profile_pic):
+		self.profile_pic = profile_pic
 
 class Course(Base):
 	__tablename__ = 'course'

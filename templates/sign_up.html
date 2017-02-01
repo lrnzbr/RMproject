@@ -4,7 +4,7 @@
 	<title>sign up</title>
 </head>
 <body>
-	<form action="{{url_for('sign_up')}}" method="POST">       
+	<form action="{{url_for('sign_up')}}" method="POST" enctype=multipart/form-data>       
 		<h3 class="form-signup-heading">Sign Up</h3>
 		
 		<input type="text" class="form-control" name="first_name" placeholder="First Name" required=""/><br>
@@ -189,15 +189,13 @@
 		<label class="radio-inline"><input type="radio" name="gender" value="Other">Other</label>
 		<br>
 		<input type="text" class="form-control" name="hometown" placeholder="Hometown" required="" autofocus=""/><br>
-		<input type="text" class="form-control" name="proffesion" placeholder="Profession" required="" autofocus=""/><br>
+		<input type="text" class="form-control" name="profession" placeholder="Profession" required="" autofocus=""/><br>
 		<input type="text" class="form-control" name="about_me" placeholder="About Me" required="" autofocus=""/><br>
-		<form action="demo_form.asp">
-		  <input type="file" name="profile_pic" accept="image/*">
+		<input type="file" name="profile_pic">
 
 		<br>
 		<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Sign Up" type="Submit">Sign Up</button>  
-	</form>  
-	</form>   
+	</form>    
 	<br>
 
 
