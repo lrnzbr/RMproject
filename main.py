@@ -52,8 +52,13 @@ def sign_up():
 
 		profile_pic = request.files['profile_pic']
 
-		if profile_pic.filename == '':
-			profile_pic = url_for('uploaded_file', filename='None_.jpg')
+		if 'profile_pic' not in request.files or profile_pic.filename == "" or profile_pic == None:
+			profile_pic = None
+			user = User(first_name=first_name, last_name=last_name, username=username, day_of_birth = day_of_birth, month_of_birth = month_of_birth, year_of_birth = year_of_birth, gender = gender, hometown=hometown, profession = profession, about_me = about_me, profile_pic = profile_pic, password=password)
+			dbsession.add(user)
+			dbsession.commit()
+			flash("User Created Successfully!")
+			return redirect(url_for('sign_in'))
 		if profile_pic and allowed_file(profile_pic.filename):
 			user = User(first_name=first_name, last_name=last_name, username=username, day_of_birth = day_of_birth, month_of_birth = month_of_birth, year_of_birth = year_of_birth, gender = gender, hometown=hometown, profession = profession, about_me = about_me, profile_pic = profile_pic, password=password)
 			dbsession.add(user)
@@ -98,7 +103,7 @@ def my_profile():
 		user = dbsession.query(User).filter_by(id = login_session['user_id']).first()
 		if user.profile_pic!=None:
 			profile_pic_path = url_for('uploaded_file', filename=user.profile_pic)
-		elif user.profile_pic.name == '' or user.profile_pic==None:
+		elif user.profile_pic==None:
 			default_profile_pic = url_for('uploaded_file', filename='None_.jpg')
 			profile_pic_path = default_profile_pic
 		return render_template('my_profile.html', user = user, profile_pic_path = profile_pic_path)
