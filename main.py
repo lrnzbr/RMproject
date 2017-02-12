@@ -116,10 +116,15 @@ def edit_profile(user_id):
 		return render_template('edit_profile.html', user=user, user_id=user_id)
 	else:
 		password = request.form['oldpass']
-		if (user.password!=password):
+		newpass = request.form['newpass']
+		if (user.password!=password and password!="" or password=="" and newpass!=""):
 			return render_template ('edit_profile.html', error = True, user = user, user_id = user_id)
 		else:
+			user.first_name = request.form['first_name']
+			user.last_name = request.form['last_name']
+			user.username = request.form['username']
 			user.password = request.form['newpass']
+			# user.profile_pic= request.files['profile_pic']
 			dbsession.commit()
 			return redirect(url_for('my_profile'))
 

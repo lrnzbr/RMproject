@@ -2,26 +2,39 @@
 <html>
 <head>
 	<title>Sign In</title>
+	<script src="{{ url_for('static', filename='jquery.js')}}"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}" media="screen and (max-width: 500px)">
+	<link rel="stylesheet" href="{{ url_for('static', filename='bootstarp.css') }}"> 
+	<script src="{{ url_for('static', filename='bootstarp.js')}}"></script> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!-- 	<meta name="viewport" content="height=device-height, initial-scale=1.0"/> -->
 </head>
-<body>
-<div class = "container">
-	<div class="wrapper" >
+<body class="background-img">
+<div class="container" style="padding-right:0px; padding-left:0px">
+	<div class="wrapper">
 
-	{% if error == True %}
-	<h3 style="color: red;">Wrong username or Password, try again!</h3>
-	{%endif%}
-	<form action="{{url_for('sign_in')}}" method="post">       
-		<h3>Welcome Back! Please Sign In</h3>
+	<form action="{{url_for('sign_in')}}" method="post" class="form-signin">       
+		<h3 style="color:white; position:center;">Welcome Back! Please Sign In</h3>
 		
-		<input type="text" class="form-control" name="username" placeholder="Username" required=""/>
+		<input type="text" class="form-control" name="username" placeholder="Username" required=""/ style="border-bottom:transparent;">
 		<input type="password" class="form-control" name="password" placeholder="Password" required=""/>
 		<br>
-		<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button> 
-		<br>
-		<center>
-		<a href="{{url_for('sign_up')}}" class="btn btn-info" role="button">Sign Up</a>
-		<a href="{{url_for('home')}}" class="btn btn-info" role="button">Cancel</a>    
-		</center>  
+		{% if error == True %}
+		<div class="alert alert-danger">
+		  The email or phone number you’ve entered doesn’t match any account. <a href="{{url_for('sign_up')}}" class="alert-link">Sign up for an account.</a>
+		</div>
+		{%endif%}
+		<div class="row">
+  			<div class="col-xs-6">
+				<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit" style="border-radius: 0px;">Login</button>
+			</div> 
+			<div class="col-xs-6">
+				<center>
+				<a href="{{url_for('sign_up')}}" class="btn btn-lg btn-primary btn-block" role="button" style="background-color:#FF754F; border-radius: 0px;">Sign Up</a>
+				</center>  
+			</div>
+		</div>
 	</form>     
 	</div>
 </div>
