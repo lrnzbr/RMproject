@@ -1,9 +1,9 @@
 from flask import Flask, render_template, flash, request, redirect, url_for, send_from_directory, session as login_session
 #import ctypes
 #from ctypes import *
-import sys
-import logging
-import os
+#import sys
+#import logging
+#import os
 #from PIL import Image
 from werkzeug.utils import secure_filename
 UPLOAD_FOLDER = 'uploads'
